@@ -1,6 +1,6 @@
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
-import chromadb
+#import chromadb
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
