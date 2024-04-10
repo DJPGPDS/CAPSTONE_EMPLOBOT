@@ -14,9 +14,9 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 ####Enivironment settings for openai API key and Vector Embeddings############
 
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 from openai import OpenAI
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 persist_directory = "https://github.com/naren579/CAPSTONE_EMPLOBOT/tree/main/embeddings/db"
 #Initialize the Chroma DB client
 store = Chroma(persist_directory=persist_directory,collection_name="Capgemini_policy_embeddings")
