@@ -8,6 +8,10 @@ import pprint
 import os
 import streamlit as st
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 ####Enivironment settings for openai API key and Vector Embeddings############
 
 os.environ['OPENAI_API_KEY'] = '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'
