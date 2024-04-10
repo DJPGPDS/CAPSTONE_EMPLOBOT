@@ -13,7 +13,7 @@ import streamlit as st
 os.environ['OPENAI_API_KEY'] = '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'
 from openai import OpenAI
 client = OpenAI(api_key="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")
-persist_directory = "C:/Users/naren/Downloads/embeddings/db"
+persist_directory = "https://github.com/naren579/CAPSTONE_EMPLOBOT/tree/main/embeddings/db"
 #Initialize the Chroma DB client
 store = Chroma(persist_directory=persist_directory,collection_name="Capgemini_policy_embeddings")
 
