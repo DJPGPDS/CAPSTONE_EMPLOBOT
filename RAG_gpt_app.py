@@ -48,7 +48,7 @@ def retrieve_vector_db(query, n_results=3):
 ############### Function to generate response for a given Prompt###############
 
 def question_to_response(query,temperature=0,max_tokens=200,top_n=10):
-  retrieved_results=retrieve_vector_db(query, n_results=top_n)
+    retrieved_results=retrieve_vector_db(query, n_results=top_n)
   #print(retrieved_results)
     if len(retrieved_results) < 1:
         context =''
@@ -56,23 +56,23 @@ def question_to_response(query,temperature=0,max_tokens=200,top_n=10):
         context = ''.join(retrieved_results[0][0].page_content)
         context=context+''.join(retrieved_results[1][0].page_content)
   #print(context)
-  prompt = f'''
-  [INST]
-  Give answer for the question based on the context provided and also on the Capgemini Policies you have been trained on.
+    prompt = f'''
+    [INST]
+    Give answer for the question based on the context provided and also on the Capgemini Policies you have been trained on.
 
-  Question: {query}
+    Question: {query}
 
-  Context : {context}
-  [/INST]
-  '''
-  completion = client.chat.completions.create( temperature=temperature, max_tokens=max_tokens,
-    model="ft:gpt-3.5-turbo-0125:personal:fine-tune-gpt3-5-1:9AFEVLdj",
-    messages=[
-      {"role": "system", "content": "You are an expert in capgemini Policies."},
-      {"role": "user", "content": prompt}
-    ]
-  )
-  return completion.choices[0].message.content
+    Context : {context}
+    [/INST]
+    '''
+    completion = client.chat.completions.create( temperature=temperature, max_tokens=max_tokens,
+      model="ft:gpt-3.5-turbo-0125:personal:fine-tune-gpt3-5-1:9AFEVLdj",
+      messages=[
+        {"role": "system", "content": "You are an expert in capgemini Policies."},
+        {"role": "user", "content": prompt}
+      ]
+    )
+    return completion.choices[0].message.content
 ###############################################################################
 
 
