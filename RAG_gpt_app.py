@@ -88,6 +88,7 @@ col1, col2 = st.columns([1, 2])
 # Display history
 # st.write("History:")
 for pair in st.session_state.history:
+    st.write(f"Emplobot 🤖: {response}")
     st.write(f"Question❓: {pair['question']}")
     st.write(f"Emplobot 🤖: {pair['response']}")
 # #     st.text(f"Question:{pair['question']}\n\t\t\t\tAnswer:{pair['response']}")
