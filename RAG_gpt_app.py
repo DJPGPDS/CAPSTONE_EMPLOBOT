@@ -14,7 +14,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 ####Enivironment settings for openai API key and Vector Embeddings############
 
-API_KEY = os.environ.get("OPENAI_API_KEY")
+API_KEY = st.secrets["OPENAI_API_KEY"]
 from openai import OpenAI
 client = OpenAI(api_key=API_KEY)
 persist_directory = './embeddings/db/'
