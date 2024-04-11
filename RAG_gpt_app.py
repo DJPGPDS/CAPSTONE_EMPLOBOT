@@ -50,8 +50,8 @@ def retrieve_vector_db(query, n_results=3):
 def question_to_response(query,temperature=0,max_tokens=200,top_n=10):
   retrieved_results=retrieve_vector_db(query, n_results=top_n)
   #print(retrieved_results)
-  context = ''.join(retrieved_results[0].page_content)
-  context=context+''.join(retrieved_results[1].page_content)
+  context = ''.join(retrieved_results[0][0].page_content)
+  context=context+''.join(retrieved_results[1][0].page_content)
   #print(context)
   prompt = f'''
   [INST]
