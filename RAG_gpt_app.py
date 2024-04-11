@@ -85,6 +85,11 @@ if 'history' not in st.session_state:
 # User Interface
 st.title("Emplochat")
 col1, col2 = st.columns([1, 2])
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(f"Question❓: {pair['question']}"):
+        st.markdown(f"Emplobot 🤖: {pair['response']}")
 # Display history
 # st.write("History:")
 # for pair in st.session_state.history:
