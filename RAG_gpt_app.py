@@ -4,6 +4,10 @@ from langchain.chat_models import ChatOpenAI
 import streamlit as st
 from openai import OpenAI
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 # Initializing OpenAI client
 API_KEY = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=API_KEY)
