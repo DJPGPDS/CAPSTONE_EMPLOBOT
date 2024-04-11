@@ -1,4 +1,4 @@
-sfrom langchain.vectorstores import Chroma
+from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 #import chromadb
 from langchain.chains import RetrievalQA
