@@ -1,0 +1,5 @@
+steps:
+  - name: Run script
+    run: python RAG_gpt_app.py
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
