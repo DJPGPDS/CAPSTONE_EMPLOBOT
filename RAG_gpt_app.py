@@ -78,53 +78,68 @@ def question_to_response(query,temperature=0,max_tokens=200,top_n=10):
 
 #################Initialize session state to store history####################
 st.set_page_config(layout="wide")
-
-if 'history' not in st.session_state:
-    st.session_state.history = []
-
-# User Interface
 st.title("Emplochat")
-col1, col2 = st.columns([1, 2])
+
+# if 'history' not in st.session_state:
+#     st.session_state.history = []
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = "ft:gpt-3.5-turbo-0125:personal:fine-tune-gpt3-5-1:9AFEVLdj"
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
-    with st.chat_message(f"Question❓: {message['question']}"):
-        st.markdown(f"Emplobot 🤖: {message['response']}")
-# Display history
-# st.write("History:")
-# for pair in st.session_state.history:
-#     st.write(f"Question❓: {pair['question']}")
-#     st.write(f"Emplobot 🤖: {pair['response']}")
-# #     st.text(f"Question:{pair['question']}\n\t\t\t\tAnswer:{pair['response']}")
-    
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-# Display history
-# for pair in st.session_state.history:
-#     with st.container():
-#         with col1:
-#             st.text(f"Question: {pair['question']}")
-#         with col2:
-#             st.text(f"Answer: {pair['response']}")
+# Accept user input
+if prompt := st.chat_input("Enter your query here?"):
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    # Display user message in chat message container
+    with st.chat_message("user"):
+        st.markdown(prompt)   
 
-user_input = st.chat_input("Enter your question here:")
+with st.chat_message("assistant"):
+        stream = client.chat.completions.create(
+            model=st.session_state["openai_model"],
+            messages=[{"role": "system", "content": "You are an expert in Capgemini policies.Generate response atleast 400 tokens"+m["content"]}
+                for m in st.session_state.messages
+            ],
+            stream=True,
+        )
+        response = st.write_stream(stream)
+st.session_state.messages.append({"role": "assistant", "content": response})
+# # Display history
+# # for pair in st.session_state.history:
+# #     with st.container():
+# #         with col1:
+# #             st.text(f"Question: {pair['question']}")
+# #         with col2:
+# #             st.text(f"Answer: {pair['response']}")
+
+# prompt = st.chat_input("Enter your question here:")
 
 
 
-if user_input:
-    # Backend Processing
-    response = question_to_response(user_input)  # Your function to process input and generate response
+# if prompt:
+#     # Backend Processing
+#     response = question_to_response(prompt)  # Your function to process input and generate response
 
-    # Update history
-    #st.session_state.history.append({"question": user_input, "response": response})
+#     # Update history
+#     #st.session_state.history.append({"question": user_input, "response": response})
 
-    #Display current response
-    st.write(f"Emplobot 🤖: {response}")
+#     #Display current response
+#     st.write(f"Emplobot 🤖: {response}")
 
-# for pair in st.session_state.history:
-#     st.write(f"Question❓: {pair['question']}")
-#     st.write(f"Emplobot 🤖: {pair['response']}")
+# # for pair in st.session_state.history:
+# #     st.write(f"Question❓: {pair['question']}")
+# #     st.write(f"Emplobot 🤖: {pair['response']}")
 
-###############################################################################
+# ###############################################################################
+
 
 
 
