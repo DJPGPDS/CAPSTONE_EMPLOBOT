@@ -17,7 +17,9 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 os.environ['OPENAI_API_KEY'] = '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'
 from openai import OpenAI
 client = OpenAI(api_key="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")
-persist_directory = "https://github.com/naren579/CAPSTONE_EMPLOBOT/tree/main/embeddings/db"
+persist_directory = './embeddings/db/'
+#"https://github.com/naren579/CAPSTONE_EMPLOBOT/tree/main/embeddings/db"
+
 #Initialize the Chroma DB client
 store = Chroma(persist_directory=persist_directory,collection_name="Capgemini_policy_embeddings")
 
