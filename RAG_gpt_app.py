@@ -87,11 +87,11 @@ st.title("Emplochat")
 col1, col2 = st.columns([1, 2])
 # Display history
 # st.write("History:")
-for pair in st.session_state.history:
-#     # st.text('Question:',pair['question'],'\nAnswer:',pair['response'])
-    st.write(f"Question❓: {pair['question']}")
-    st.write(f"Emplobot 🤖: {pair['response']}")
-#     st.text(f"Question:{pair['question']}\n\t\t\t\tAnswer:{pair['response']}")
+# for pair in st.session_state.history:
+# #     # st.text('Question:',pair['question'],'\nAnswer:',pair['response'])
+#     st.write(f"Question❓: {pair['question']}")
+#     st.write(f"Emplobot 🤖: {pair['response']}")
+# #     st.text(f"Question:{pair['question']}\n\t\t\t\tAnswer:{pair['response']}")
     
 
 # Display history
@@ -113,8 +113,12 @@ if st.button("Submit"):
     # Update history
     st.session_state.history.append({"question": user_input, "response": response})
 
+    for pair in st.session_state.history:
+        st.write(f"Question❓: {pair['question']}")
+        st.write(f"Emplobot 🤖: {pair['response']}")
+
     # Display current response
-    st.write(f"Emplobot 🤖: {response}")
+    #st.write(f"Emplobot 🤖: {response}")
 
 ###############################################################################
 
