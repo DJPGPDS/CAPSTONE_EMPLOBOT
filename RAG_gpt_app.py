@@ -101,23 +101,23 @@ col1, col2 = st.columns([1, 2])
 #         with col2:
 #             st.text(f"Answer: {pair['response']}")
 
-user_input = st.text_input("Enter your question:")
+user_input = st.chat_input("Enter your question here:")
 
 
 
-if st.button("Submit"):
+if user_input:
     # Backend Processing
     response = question_to_response(user_input)  # Your function to process input and generate response
 
     # Update history
-    st.session_state.history.append({"question": user_input, "response": response})
+    #st.session_state.history.append({"question": user_input, "response": response})
 
     #Display current response
     st.write(f"Emplobot 🤖: {response}")
 
-for pair in st.session_state.history:
-    st.write(f"Question❓: {pair['question']}")
-    st.write(f"Emplobot 🤖: {pair['response']}")
+# for pair in st.session_state.history:
+#     st.write(f"Question❓: {pair['question']}")
+#     st.write(f"Emplobot 🤖: {pair['response']}")
 
 ###############################################################################
 
