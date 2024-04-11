@@ -58,7 +58,7 @@ def question_to_response(query,temperature=0,max_tokens=200,top_n=10):
   #print(context)
     prompt = f'''
     [INST]
-    Give answer for the question based on the context provided and also on the Capgemini Policies you have been trained on.
+    You are an expert in Capgemini policies.Generate response atleast 400 tokens.
 
     Question: {query}
 
@@ -87,10 +87,9 @@ st.title("Emplochat")
 col1, col2 = st.columns([1, 2])
 # Display history
 # st.write("History:")
-# for pair in st.session_state.history:
-# #     # st.text('Question:',pair['question'],'\nAnswer:',pair['response'])
-#     st.write(f"Question❓: {pair['question']}")
-#     st.write(f"Emplobot 🤖: {pair['response']}")
+for pair in st.session_state.history:
+    st.write(f"Question❓: {pair['question']}")
+    st.write(f"Emplobot 🤖: {pair['response']}")
 # #     st.text(f"Question:{pair['question']}\n\t\t\t\tAnswer:{pair['response']}")
     
 
@@ -113,9 +112,7 @@ if st.button("Submit"):
     # Update history
     st.session_state.history.append({"question": user_input, "response": response})
 
-    for pair in st.session_state.history:
-        st.write(f"Question❓: {pair['question']}")
-        st.write(f"Emplobot 🤖: {pair['response']}")
+    
 
     # Display current response
     #st.write(f"Emplobot 🤖: {response}")
