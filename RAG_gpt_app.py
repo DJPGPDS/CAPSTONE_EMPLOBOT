@@ -13,12 +13,10 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 ####Enivironment settings for openai API key and Vector Embeddings############
-from dotenv import load_dotenv,find_dotenv
-load_dotenv(find_dotenv(),override=True)
 
-os.environ['OPENAI_API_KEY'] = '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'
+API_KEY = os.environ.get("OPENAI_API_KEY")
 from openai import OpenAI
-client = OpenAI(api_key="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")
+client = OpenAI(api_key=API_KEY)
 persist_directory = './embeddings/db/'
 #"https://github.com/naren579/CAPSTONE_EMPLOBOT/tree/main/embeddings/db"
 
